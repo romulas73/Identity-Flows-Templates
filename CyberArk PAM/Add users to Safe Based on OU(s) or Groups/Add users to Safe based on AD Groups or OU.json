@@ -1,0 +1,1886 @@
+{
+  "aapilets": {
+    "scim": {
+      "enabled": false,
+      "version": 2
+    },
+    "name": "Add users to Safe based on AD Groups or OU",
+    "start-connection": "dataStore-definition-1111726926",
+    "apiconnection": {
+      "api-webhook-desc": {},
+      "api-custom-values": {
+        "Content-Type": {
+          "formula": false,
+          "prompt": false,
+          "saved": false,
+          "value": "application/json"
+        },
+        "PAS Passwor": {
+          "formula": false,
+          "prompt": false,
+          "saved": false,
+          "value": "Cyberark1"
+        }
+      },
+      "manualProcess": false,
+      "mask-parameters": {
+        "aapi-custom-values": [
+          "PAS Passwor"
+        ],
+        "aapilet-external-request": [],
+        "dataStore-definition-1111726926": []
+      },
+      "run": {
+        "browser": {
+          "enabled": true,
+          "oidcEnabled": false,
+          "workspaceEnabled": true
+        },
+        "endpoint": {
+          "active": false,
+          "apikey": ""
+        },
+        "manual": {
+          "active": true,
+          "postrun": {
+            "api-condition-stop-definition-1113235302": {
+              "customredirect": {
+                "enabled": false,
+                "isredirected": false,
+                "redirecturl": []
+              }
+            },
+            "api-condition-stop-definition-1116033398": {
+              "customredirect": {
+                "enabled": false,
+                "isredirected": false,
+                "redirecturl": []
+              }
+            },
+            "api-condition-stop-definition-1116498553": {
+              "customredirect": {
+                "enabled": false,
+                "isredirected": false,
+                "redirecturl": []
+              }
+            },
+            "close": false,
+            "customredirect": {
+              "enabled": false,
+              "isredirected": false,
+              "redirecturl": []
+            },
+            "redirect": false,
+            "redirecturl": "",
+            "remain": true,
+            "workspace": false
+          }
+        },
+        "schedule": {
+          "active": false,
+          "day": [],
+          "options": "periodically",
+          "periodically": "10m",
+          "range": [],
+          "time": []
+        }
+      },
+      "timer": {
+        "interval-days": "",
+        "interval-endtime": "",
+        "interval-hours": "",
+        "interval-specificdate": "",
+        "interval-starttime": "",
+        "interval-timezone": "",
+        "interval-type": "minutes",
+        "interval-value": "10"
+      },
+      "dataStore-definition-1111726926": {
+        "dataStore-map-values": {
+          "dataid": [
+            {
+              "_id": "MID004495342506130484",
+              "ref": "text",
+              "value": "41ac7f4b-5b8d-11ed-a3e7-befc48876d60"
+            }
+          ],
+          "dataname": []
+        },
+        "dataStoreName": "Read Rules Configuration",
+        "datastoreType": "read",
+        "definition-id": "1111726926",
+        "goto": "api-definition-1116683192",
+        "guid": "dataStore-definition-1111726926",
+        "id": "dataStore-definition-1111726926",
+        "isDatastore": true,
+        "nodeType": "DSRead",
+        "schema": {
+          "Rules": [
+            {
+              "Group1": "Test",
+              "Group2": "Test2",
+              "OU": "OU=Safe Admins",
+              "Safe": "Domain Service Accounts"
+            }
+          ]
+        },
+        "type": "datastore"
+      },
+      "api-definition-1116683192": {
+        "api-authentication": {
+          "auth-apikey-location": "",
+          "auth-apikey-name": "",
+          "auth-apikey-value": "",
+          "auth-clientid": "",
+          "auth-clientsecret": "",
+          "auth-flow": "",
+          "auth-password": "",
+          "auth-refresh-token": "",
+          "auth-scopes": [],
+          "auth-content-type": "",
+          "auth-token": "",
+          "auth-token-type": "",
+          "auth-type": "basic",
+          "auth-userid": ""
+        },
+        "api-call-body": [
+          {
+            "ref": "text",
+            "value": "{"
+          },
+          {
+            "ref": "text",
+            "value": "\"Script\":"
+          },
+          {
+            "ref": "text",
+            "value": "\""
+          },
+          {
+            "ref": "text",
+            "value": "Select * from DSUsers where ServiceInstanceLocalized = 'Active Directory (CYBR.COM)'",
+            "_id": "MID2862977610680215"
+          },
+          {
+            "ref": "text",
+            "value": "\""
+          },
+          {
+            "ref": "text",
+            "value": "}"
+          }
+        ],
+        "api-call-contenttype": "application/json",
+        "api-call-form": {},
+        "api-call-header": {},
+        "api-call-path": {},
+        "api-call-query": {},
+        "api-call-type": "post",
+        "api-description": "Query Redrock",
+        "api-map-config": {
+          "api-call-body": {
+            "description": "",
+            "location": "body",
+            "name": "body",
+            "webhookInput": null,
+            "webhookValidation": null,
+            "required": false,
+            "prompt": false,
+            "defaultParameter": true
+          },
+          "api-call-form": {},
+          "api-call-header": {},
+          "api-call-path": {},
+          "api-call-query": {}
+        },
+        "api-map-desc": {
+          "api-call-body": "",
+          "api-call-form": {},
+          "api-call-header": {},
+          "api-call-path": {},
+          "api-call-query": {}
+        },
+        "apiid": "1ec65f51-f7c1-4468-85d2-edf4f47b3c5f",
+        "global_apiid": "29f879cf-a144-4305-b7ef-4de0af7b472c",
+        "global_region": "",
+        "apiname": " Redrock Query",
+        "apiuniqueid": "",
+        "appname": "Identity Security Platform",
+        "authRequired": false,
+        "basePath": "/",
+        "company": "CyberArk",
+        "definition-id": "1116683192",
+        "endpoint": "/Redrock/query",
+        "host": "tenant.my.idaptive.app",
+        "logo": "https://d2jvs8ec336vde.cloudfront.net/cyberark.png",
+        "scheme": [
+          "https"
+        ],
+        "id": "api-definition-1116683192",
+        "version": "1.0.0",
+        "goto": "api-definition-1117947119",
+        "guid": "api-definition-1116683192"
+      },
+      "api-definition-1117947119": {
+        "api-authentication": {
+          "auth-all-scopes": null,
+          "auth-apikey-location": "",
+          "auth-apikey-name": "",
+          "auth-apikey-value": "***",
+          "auth-clientid": "",
+          "auth-clientsecret": "",
+          "auth-content-type": "",
+          "auth-flow": "",
+          "auth-password": "***",
+          "auth-refresh-token": "",
+          "auth-scopes": [],
+          "auth-token": "",
+          "auth-token-url": "",
+          "auth-type": "basic",
+          "auth-url": "",
+          "auth-userid": "***"
+        },
+        "api-call-body": [
+          {
+            "ref": "text",
+            "value": "{"
+          },
+          {
+            "ref": "text",
+            "value": "\"concurrentSession\":"
+          },
+          {
+            "ref": "text",
+            "value": "\""
+          },
+          {
+            "ref": "text",
+            "value": "true"
+          },
+          {
+            "ref": "text",
+            "value": "\""
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"password\":"
+          },
+          {
+            "ref": "text",
+            "value": "\""
+          },
+          {
+            "ref": "text",
+            "value": ""
+          },
+          {
+            "_id": "MID026157780566112177",
+            "maskParameter": false,
+            "name": "PAS Passwor",
+            "position": 1,
+            "ref": "aapi-custom-values",
+            "value": "PAS Passwor"
+          },
+          {
+            "ref": "text",
+            "value": ""
+          },
+          {
+            "ref": "text",
+            "value": "\""
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"username\":"
+          },
+          {
+            "ref": "text",
+            "value": "\""
+          },
+          {
+            "ref": "text",
+            "value": "cyberark-flows"
+          },
+          {
+            "ref": "text",
+            "value": "\""
+          },
+          {
+            "ref": "text",
+            "value": "}"
+          }
+        ],
+        "api-call-contenttype": "application/json",
+        "api-call-form": {},
+        "api-call-header": {
+          "Authorization": [
+            {
+              "_id": "MID320477101867759",
+              "ref": "text",
+              "value": ""
+            }
+          ],
+          "Content-Type": [
+            {
+              "_id": "MID40925977392252877",
+              "ref": "text",
+              "value": ""
+            },
+            {
+              "_id": "MID4348664487345333",
+              "maskParameter": false,
+              "name": "Content-Type",
+              "ref": "aapi-custom-values",
+              "value": "Content-Type"
+            },
+            {
+              "_id": "MID026097328838856848",
+              "ref": "text",
+              "value": ""
+            }
+          ]
+        },
+        "api-call-path": {},
+        "api-call-query": {},
+        "api-call-type": "post",
+        "api-description": "Logon - LDAP Authentication",
+        "api-map-config": {
+          "api-call-body": {
+            "description": "",
+            "location": "body",
+            "name": "body",
+            "webhookInput": null,
+            "webhookValidation": null,
+            "required": false,
+            "prompt": false,
+            "defaultParameter": true
+          },
+          "api-call-form": {},
+          "api-call-header": {
+            "Authorization": {
+              "location": "header",
+              "name": "Authorization",
+              "type": "string",
+              "webhookInput": null,
+              "webhookValidation": null,
+              "required": false,
+              "prompt": false,
+              "defaultParameter": true
+            },
+            "Content-Type": {
+              "description": "",
+              "location": "header",
+              "name": "Content-Type",
+              "type": "string",
+              "webhookInput": null,
+              "webhookValidation": null,
+              "required": false,
+              "prompt": false,
+              "defaultParameter": true
+            }
+          },
+          "api-call-path": {},
+          "api-call-query": {}
+        },
+        "api-map-desc": {
+          "api-call-body": "",
+          "api-call-form": {},
+          "api-call-header": {},
+          "api-call-path": {},
+          "api-call-query": {}
+        },
+        "apiid": "20583007-0b7e-4053-afdc-b2f1d9931ce3",
+        "apiname": " Logon- L D A P Authentication",
+        "apiuniqueid": "",
+        "appname": "Identity Security Platform",
+        "authRequired": false,
+        "basePath": "/",
+        "company": "CyberArk",
+        "definition-id": "1117947119",
+        "endpoint": "/PasswordVault/API/Auth/LDAP/Logon",
+        "global_apiid": "121e3ef0-c366-4409-bc12-7ee821639bad",
+        "global_region": "",
+        "goto": "loop-definition-1112520119",
+        "guid": "api-definition-1117947119",
+        "host": "services-uscentral.skytap.com:17975",
+        "id": "api-definition-1117947119",
+        "logo": "https://d2jvs8ec336vde.cloudfront.net/cyberark.png",
+        "nodeType": "API",
+        "scheme": [
+          "https"
+        ],
+        "version": "1.0"
+      },
+      "loop-definition-1112520119": {
+        "condition-type": "loop",
+        "definition-id": "1112520119",
+        "goto": "loop-definition-1110706065",
+        "guid": "loop-definition-1112520119",
+        "id": "loop-definition-1112520119",
+        "isConditionLoop": true,
+        "loop-map-values": {
+          "initialization": [],
+          "iteration-goto": "",
+          "iteration-value": [
+            {
+              "_id": "MID012631248586384203",
+              "ref": "text",
+              "value": ""
+            },
+            {
+              "_id": "MID10506395814349578",
+              "image": "",
+              "list": [
+                "",
+                ""
+              ],
+              "logo": "/pages-gateway/assets/images/db.png",
+              "ref": "dataStore-definition-1111726926",
+              "title": " Rules",
+              "type": "[{}]",
+              "value": "Rules[{}]"
+            },
+            {
+              "_id": "MID3231870527873617",
+              "ref": "text",
+              "value": ""
+            }
+          ],
+          "loop-type": "forEach",
+          "operations": ""
+        },
+        "loopName": "Loop Rules",
+        "loopstop-definition": "loop-definition-1112520119",
+        "loopstop-id": "loop-stop-definition-1119230149",
+        "nodeType": "Loop",
+        "schema": {
+          "Group1": "Test",
+          "Group2": "Test2",
+          "OU": "OU=Safe Admins",
+          "Safe": "Domain Service Accounts"
+        },
+        "type": "loop"
+      },
+      "loop-definition-1110706065": {
+        "condition-type": "loop",
+        "definition-id": "1110706065",
+        "goto": "api-definition-1116970184",
+        "id": "loop-definition-1110706065",
+        "isConditionLoop": true,
+        "loop-map-values": {
+          "initialization": [],
+          "iteration-goto": "",
+          "iteration-value": [
+            {
+              "ref": "text",
+              "value": "",
+              "_id": "MID8045982196679362"
+            },
+            {
+              "value": "Result{}.Results[{}]",
+              "ref": "api-definition-1116683192",
+              "title": "Result Results",
+              "type": "[{}]",
+              "image": "",
+              "maskParameter": false,
+              "_id": "MID2606329068843991"
+            },
+            {
+              "ref": "text",
+              "value": "",
+              "_id": "MID6909427631970788"
+            }
+          ],
+          "loop-type": "forEach",
+          "operations": ""
+        },
+        "loopName": "Loop Users",
+        "loopstop-definition": "loop-definition-1110706065",
+        "loopstop-id": "loop-stop-definition-1111827118",
+        "nodeType": "Loop",
+        "schema": {
+          "Entities": [
+            {
+              "IsForeignKey": false,
+              "Key": "7aae9f1d-475c-4373-82fb-d33cb0f3beba",
+              "Type": "User"
+            }
+          ],
+          "Row": {
+            "CloudState": null,
+            "DirectoryServiceUuid": "09B9A9B0-6CE8-465F-AB03-65766D33B05E",
+            "DisplayName": "apiuser",
+            "Email": "chad.miller@cyberark.com",
+            "EmailVerificationStatus": "Not Applicable",
+            "EmailVerificationStatusEnum": "NotApplicable",
+            "EmailVerified": null,
+            "Forest": null,
+            "ID": "7aae9f1d-475c-4373-82fb-d33cb0f3beba",
+            "LastInvite": null,
+            "LastLastLogin": "/Date(1662052411468)/",
+            "LastLogin": "/Date(1662669024392)/",
+            "LoginName": "apiuser@chad",
+            "MobileNumber": "",
+            "OrgId": null,
+            "OrgPath": null,
+            "PhonePinLastChangeDate": null,
+            "PrimaryIdentifier": null,
+            "RiskLevel": null,
+            "RiskLevelLocalized": "Unknown",
+            "RiskLevelRank": 5,
+            "SearchEmail": "CHAD.MILLER@CYBERARK.COM",
+            "SearchMobileNumber": "",
+            "SecurityQuestionCount": 0,
+            "SecurityQuestionSet": false,
+            "SelfUnlockPopup": false,
+            "ServiceUser": true,
+            "SourceDs": "CDS",
+            "SourceDsInstance": "CDS",
+            "SourceDsLocalized": "CyberArk Cloud Directory",
+            "SourceDsType": "CDS",
+            "Status": "Active",
+            "StatusEnum": "Active",
+            "UserType": "OAuth2",
+            "Username": "apiuser@chad",
+            "VerifyEmail": null,
+            "_TableName": "users"
+          }
+        },
+        "type": "loop"
+      },
+      "api-definition-1116970184": {
+        "api-authentication": {
+          "auth-apikey-location": "",
+          "auth-apikey-name": "",
+          "auth-apikey-value": "",
+          "auth-clientid": "",
+          "auth-clientsecret": "",
+          "auth-flow": "",
+          "auth-password": "",
+          "auth-refresh-token": "",
+          "auth-scopes": [],
+          "auth-content-type": "",
+          "auth-token": "",
+          "auth-token-type": "",
+          "auth-type": "basic",
+          "auth-userid": ""
+        },
+        "api-call-body": [],
+        "api-call-contenttype": "application/json",
+        "api-call-form": {},
+        "api-call-header": {},
+        "api-call-path": {},
+        "api-call-query": {
+          "ID": [
+            {
+              "ref": "text",
+              "value": "",
+              "_id": "MID5245959511406895"
+            },
+            {
+              "value": "Row{}.ID(s)",
+              "ref": "loop-definition-1110706065",
+              "title": "Row Id",
+              "type": "(s)",
+              "image": "",
+              "maskParameter": false,
+              "_id": "MID286432173756588"
+            },
+            {
+              "ref": "text",
+              "value": "",
+              "_id": "MID6858879533321023"
+            }
+          ],
+          "directoryServiceUuid": [
+            {
+              "ref": "text",
+              "value": "",
+              "_id": "MID03528969868397791"
+            },
+            {
+              "value": "Row{}.DirectoryServiceUuid(s)",
+              "ref": "loop-definition-1110706065",
+              "title": "Row Directoryserviceuuid",
+              "type": "(s)",
+              "image": "",
+              "maskParameter": false,
+              "_id": "MID8622446010734484"
+            },
+            {
+              "ref": "text",
+              "value": "",
+              "_id": "MID89821354093312"
+            }
+          ]
+        },
+        "api-call-type": "post",
+        "api-description": "Get User Attributes",
+        "api-map-config": {
+          "api-call-body": {},
+          "api-call-form": {},
+          "api-call-header": {},
+          "api-call-path": {},
+          "api-call-query": {
+            "ID": {
+              "description": "User UUID to fetch attributes for (default=current user)",
+              "location": "query",
+              "name": "ID",
+              "type": "string",
+              "webhookInput": null,
+              "webhookValidation": null,
+              "required": false,
+              "prompt": false,
+              "defaultParameter": true
+            },
+            "directoryServiceUuid": {
+              "description": "Directory service UUID of the user (default=null)",
+              "location": "query",
+              "name": "directoryServiceUuid",
+              "type": "string",
+              "webhookInput": null,
+              "webhookValidation": null,
+              "required": false,
+              "prompt": false,
+              "defaultParameter": true
+            }
+          }
+        },
+        "api-map-desc": {
+          "api-call-body": "",
+          "api-call-form": {},
+          "api-call-header": {},
+          "api-call-path": {},
+          "api-call-query": {}
+        },
+        "apiid": "1ec65f51-f7c1-4468-85d2-edf4f47b3c5f",
+        "global_apiid": "29f879cf-a144-4305-b7ef-4de0af7b472c",
+        "global_region": "",
+        "apiname": " Post Get User Attributes",
+        "apiuniqueid": "",
+        "appname": "Identity Security Platform",
+        "authRequired": false,
+        "basePath": "/",
+        "company": "CyberArk",
+        "definition-id": "1116970184",
+        "endpoint": "/UserMgmt/GetUserAttributes",
+        "host": "tenant.my.idaptive.app",
+        "logo": "https://d2jvs8ec336vde.cloudfront.net/cyberark.png",
+        "scheme": [
+          "https"
+        ],
+        "id": "api-definition-1116970184",
+        "version": "1.0.0",
+        "goto": "api-condition-bool-definition-1111648346"
+      },
+      "api-condition-bool-definition-1111648346": {
+        "branchName": "IF MemberOf Group 1",
+        "condition": "contains",
+        "condition-id": "1111648346",
+        "condition-in": {
+          "_id": "MID4271602323963135",
+          "image": "",
+          "ref": "api-definition-1116970184",
+          "title": "Result Memberof Name",
+          "type": "(s)",
+          "value": "Result{}.memberof[{}].name(s)",
+          "maskParameter": false
+        },
+        "condition-true-path": "leftpath",
+        "condition-type": "bool",
+        "id": "api-condition-bool-definition-1111648346",
+        "map": [
+          {
+            "goto": "api-condition-bool-definition-1111679650",
+            "options": true
+          },
+          {
+            "goto": "api-condition-bool-definition-1119021410",
+            "options": false
+          }
+        ],
+        "nodeType": "Branch",
+        "value": {
+          "_id": "MID5137259863452583",
+          "image": "",
+          "list": [
+            ""
+          ],
+          "logo": "/pages-gateway/assets/images/builder/loop-solid.svg",
+          "ref": "loop-definition-1112520119",
+          "title": " Group1",
+          "type": "(s)",
+          "value": "Group1(s)"
+        }
+      },
+      "api-condition-bool-definition-1111679650": {
+        "branchName": "If memberOf Group 2",
+        "condition": "contains",
+        "condition-id": "1111679650",
+        "condition-in": {
+          "ref": "api-definition-1116970184",
+          "value": "Result{}.memberof[{}].name(s)",
+          "_id": "MID04902339598830929",
+          "title": "Result Memberof Name",
+          "type": "(s)",
+          "image": "",
+          "maskParameter": false
+        },
+        "condition-true-path": "leftpath",
+        "condition-type": "bool",
+        "id": "api-condition-bool-definition-1111679650",
+        "map": [
+          {
+            "goto": "api-definition-1117994841",
+            "options": true
+          },
+          {
+            "goto": "api-condition-bool-definition-1119021410",
+            "options": false
+          }
+        ],
+        "nodeType": "Branch",
+        "value": {
+          "_id": "MID4141296142205455",
+          "image": "",
+          "list": [
+            ""
+          ],
+          "logo": "/pages-gateway/assets/images/builder/loop-solid.svg",
+          "ref": "loop-definition-1112520119",
+          "title": " Group2",
+          "type": "(s)",
+          "value": "Group2(s)"
+        }
+      },
+      "api-definition-1117994841": {
+        "api-authentication": {
+          "auth-all-scopes": null,
+          "auth-apikey-location": "",
+          "auth-apikey-name": "",
+          "auth-apikey-value": "***",
+          "auth-clientid": "",
+          "auth-clientsecret": "",
+          "auth-content-type": "",
+          "auth-flow": "",
+          "auth-password": "***",
+          "auth-refresh-token": "",
+          "auth-scopes": [],
+          "auth-token": "",
+          "auth-token-url": "",
+          "auth-type": "basic",
+          "auth-url": "",
+          "auth-userid": "***"
+        },
+        "api-call-body": [
+          {
+            "ref": "text",
+            "value": "{"
+          },
+          {
+            "ref": "text",
+            "value": "\"memberName\":"
+          },
+          {
+            "ref": "text",
+            "value": "\""
+          },
+          {
+            "ref": "text",
+            "value": ""
+          },
+          {
+            "_id": "MID40045938990555197",
+            "image": "/pages-gateway/assets/images/formula-white-search.svg",
+            "isFormula": false,
+            "logo": "/pages-gateway/assets/images/formula-white-search.svg",
+            "maskParameter": false,
+            "params": [
+              {
+                "params": [
+                  {
+                    "ref": "expression",
+                    "type": "string",
+                    "value": "loop-definition-1110706065"
+                  },
+                  {
+                    "ref": "expression",
+                    "type": "string",
+                    "value": "Row{}.SystemName(s)"
+                  }
+                ],
+                "ref": "expression",
+                "source": "ReplaceAll(MapValue(\"loop-definition-1110706065\",\"Row{}.SystemName(s)\"),\"@CYBR.COM\",\"\")",
+                "type": "function",
+                "value": "MapValue"
+              },
+              {
+                "ref": "expression",
+                "type": "string",
+                "value": "@CYBR.COM"
+              },
+              {
+                "ref": "expression",
+                "type": "string",
+                "value": ""
+              }
+            ],
+            "ref": "expression",
+            "source": "ReplaceAll(MapValue(\"loop-definition-1110706065\",\"Row{}.SystemName(s)\"),\"@CYBR.COM\",\"\")",
+            "type": "function",
+            "value": "ReplaceAll"
+          },
+          {
+            "ref": "text",
+            "value": ""
+          },
+          {
+            "ref": "text",
+            "value": "\""
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"permissions\":"
+          },
+          {
+            "ref": "text",
+            "value": "{"
+          },
+          {
+            "ref": "text",
+            "value": "\"accessWithoutConfirmation\":"
+          },
+          {
+            "ref": "text",
+            "value": "false"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"addAccounts\":"
+          },
+          {
+            "ref": "text",
+            "value": "true"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"backupSafe\":"
+          },
+          {
+            "ref": "text",
+            "value": "false"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"createFolders\":"
+          },
+          {
+            "ref": "text",
+            "value": "false"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"deleteAccounts\":"
+          },
+          {
+            "ref": "text",
+            "value": "false"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"deleteFolders\":"
+          },
+          {
+            "ref": "text",
+            "value": "false"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"initiateCPMAccountManagementOperations\":"
+          },
+          {
+            "ref": "text",
+            "value": "true"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"listAccounts\":"
+          },
+          {
+            "ref": "text",
+            "value": "true"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"manageSafe\":"
+          },
+          {
+            "ref": "text",
+            "value": "false"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"manageSafeMembers\":"
+          },
+          {
+            "ref": "text",
+            "value": "false"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"moveAccountsAndFolders\":"
+          },
+          {
+            "ref": "text",
+            "value": "true"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"renameAccounts\":"
+          },
+          {
+            "ref": "text",
+            "value": "false"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"requestsAuthorizationLevel1\":"
+          },
+          {
+            "ref": "text",
+            "value": "false"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"requestsAuthorizationLevel2\":"
+          },
+          {
+            "ref": "text",
+            "value": "false"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"retrieveAccounts\":"
+          },
+          {
+            "ref": "text",
+            "value": "true"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"specifyNextAccountContent\":"
+          },
+          {
+            "ref": "text",
+            "value": "false"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"unlockAccounts\":"
+          },
+          {
+            "ref": "text",
+            "value": "true"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"updateAccountContent\":"
+          },
+          {
+            "ref": "text",
+            "value": "true"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"updateAccountProperties\":"
+          },
+          {
+            "ref": "text",
+            "value": "true"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"useAccounts\":"
+          },
+          {
+            "ref": "text",
+            "value": "true"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"viewAuditLog\":"
+          },
+          {
+            "ref": "text",
+            "value": "false"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"viewSafeMembers\":"
+          },
+          {
+            "ref": "text",
+            "value": "true"
+          },
+          {
+            "ref": "text",
+            "value": "}"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"searchIn\":"
+          },
+          {
+            "ref": "text",
+            "value": "\""
+          },
+          {
+            "ref": "text",
+            "value": "cybr.com"
+          },
+          {
+            "ref": "text",
+            "value": "\""
+          },
+          {
+            "ref": "text",
+            "value": "}"
+          }
+        ],
+        "api-call-contenttype": "application/json",
+        "api-call-form": {},
+        "api-call-header": {
+          "Authorization": [
+            {
+              "_id": "MID9226729794546031",
+              "ref": "text",
+              "value": ""
+            },
+            {
+              "_id": "MID21592455106792663",
+              "description": " Logon- L D A P Authentication",
+              "name": "Body",
+              "ref": "api-definition-1117947119",
+              "value": "body"
+            },
+            {
+              "_id": "MID9998533909171461",
+              "ref": "text",
+              "value": ""
+            }
+          ],
+          "Content-Type": [
+            {
+              "_id": "MID2848413576961506",
+              "ref": "text",
+              "value": "application/json"
+            }
+          ]
+        },
+        "api-call-path": {
+          "Safe": [
+            {
+              "_id": "MID4230094159290083",
+              "ref": "text",
+              "value": ""
+            },
+            {
+              "_id": "MID4675284817898746",
+              "image": "",
+              "list": [
+                ""
+              ],
+              "logo": "/pages-gateway/assets/images/builder/loop-solid.svg",
+              "ref": "loop-definition-1112520119",
+              "title": " Safe",
+              "type": "(s)",
+              "value": "Safe(s)"
+            },
+            {
+              "_id": "MID8989691409033054",
+              "ref": "text",
+              "value": ""
+            }
+          ]
+        },
+        "api-call-query": {},
+        "api-call-type": "post",
+        "api-description": "Add Safe Member",
+        "api-map-config": {
+          "api-call-body": {
+            "description": "",
+            "location": "body",
+            "name": "body",
+            "webhookInput": null,
+            "webhookValidation": null,
+            "required": false,
+            "prompt": false,
+            "defaultParameter": true
+          },
+          "api-call-form": {},
+          "api-call-header": {
+            "Authorization": {
+              "description": "Session Authorization Token",
+              "location": "header",
+              "name": "Authorization",
+              "type": "string",
+              "webhookInput": null,
+              "webhookValidation": null,
+              "required": false,
+              "prompt": false,
+              "defaultParameter": true
+            },
+            "Content-Type": {
+              "description": "",
+              "location": "header",
+              "name": "Content-Type",
+              "type": "string",
+              "webhookInput": null,
+              "webhookValidation": null,
+              "required": false,
+              "prompt": false,
+              "defaultParameter": true
+            }
+          },
+          "api-call-path": {
+            "Safe": {
+              "description": "",
+              "location": "path",
+              "name": "Safe",
+              "type": "string",
+              "webhookInput": null,
+              "webhookValidation": null,
+              "required": false,
+              "prompt": false,
+              "defaultParameter": true
+            }
+          },
+          "api-call-query": {}
+        },
+        "api-map-desc": {
+          "api-call-body": "",
+          "api-call-form": {},
+          "api-call-header": {},
+          "api-call-path": {},
+          "api-call-query": {}
+        },
+        "apiid": "20583007-0b7e-4053-afdc-b2f1d9931ce3",
+        "apiname": " Add Safe Member",
+        "apiuniqueid": "",
+        "appname": "Identity Security Platform",
+        "authRequired": false,
+        "basePath": "/",
+        "company": "CyberArk",
+        "definition-id": "1117994841",
+        "endpoint": "/PasswordVault/api/Safes/{Safe}/Members",
+        "global_apiid": "121e3ef0-c366-4409-bc12-7ee821639bad",
+        "global_region": "",
+        "goto": "api-condition-bool-definition-1119021410",
+        "host": "services-uscentral.skytap.com:17975",
+        "id": "api-definition-1117994841",
+        "logo": "https://d2jvs8ec336vde.cloudfront.net/cyberark.png",
+        "nodeType": "API",
+        "scheme": [
+          "https"
+        ],
+        "version": "1.0"
+      },
+      "api-condition-bool-definition-1119021410": {
+        "branchName": "If In OU?",
+        "condition": "contains",
+        "condition-id": "1119021410",
+        "condition-in": {
+          "_id": "MID1290631257865853",
+          "image": "",
+          "list": [
+            ""
+          ],
+          "logo": "/pages-gateway/assets/images/builder/loop-solid.svg",
+          "ref": "loop-definition-1110706065",
+          "title": "Row Distinguishedname",
+          "type": "(s)",
+          "value": "Row{}.DistinguishedName(s)"
+        },
+        "condition-true-path": "leftpath",
+        "condition-type": "bool",
+        "id": "api-condition-bool-definition-1119021410",
+        "map": [
+          {
+            "goto": "api-definition-1115204918",
+            "options": true
+          },
+          {
+            "goto": "loop-stop-definition-1111827118",
+            "options": false
+          }
+        ],
+        "nodeType": "Branch",
+        "value": {
+          "_id": "MID89799881209131",
+          "image": "",
+          "list": [
+            ""
+          ],
+          "logo": "/pages-gateway/assets/images/builder/loop-solid.svg",
+          "ref": "loop-definition-1112520119",
+          "title": " Ou",
+          "type": "(s)",
+          "value": "OU(s)"
+        }
+      },
+      "api-definition-1115204918": {
+        "api-authentication": {
+          "auth-all-scopes": null,
+          "auth-apikey-location": "",
+          "auth-apikey-name": "",
+          "auth-apikey-value": "***",
+          "auth-clientid": "",
+          "auth-clientsecret": "",
+          "auth-content-type": "",
+          "auth-flow": "",
+          "auth-password": "***",
+          "auth-refresh-token": "",
+          "auth-scopes": [],
+          "auth-token": "",
+          "auth-token-url": "",
+          "auth-type": "basic",
+          "auth-url": "",
+          "auth-userid": "***"
+        },
+        "api-call-body": [
+          {
+            "ref": "text",
+            "value": "{"
+          },
+          {
+            "ref": "text",
+            "value": "\"memberName\":"
+          },
+          {
+            "ref": "text",
+            "value": "\""
+          },
+          {
+            "ref": "text",
+            "value": ""
+          },
+          {
+            "_id": "MID22338092010462285",
+            "image": "/pages-gateway/assets/images/formula-white-search.svg",
+            "isFormula": false,
+            "logo": "/pages-gateway/assets/images/formula-white-search.svg",
+            "maskParameter": false,
+            "params": [
+              {
+                "params": [
+                  {
+                    "ref": "expression",
+                    "type": "string",
+                    "value": "loop-definition-1110706065"
+                  },
+                  {
+                    "ref": "expression",
+                    "type": "string",
+                    "value": "Row{}.SystemName(s)"
+                  }
+                ],
+                "ref": "expression",
+                "source": "ReplaceAll(MapValue(\"loop-definition-1110706065\",\"Row{}.SystemName(s)\"),\"@CYBR.COM\",\"\")",
+                "type": "function",
+                "value": "MapValue"
+              },
+              {
+                "ref": "expression",
+                "type": "string",
+                "value": "@CYBR.COM"
+              },
+              {
+                "ref": "expression",
+                "type": "string",
+                "value": ""
+              }
+            ],
+            "ref": "expression",
+            "source": "ReplaceAll(MapValue(\"loop-definition-1110706065\",\"Row{}.SystemName(s)\"),\"@CYBR.COM\",\"\")",
+            "type": "function",
+            "value": "ReplaceAll"
+          },
+          {
+            "ref": "text",
+            "value": ""
+          },
+          {
+            "ref": "text",
+            "value": "\""
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"permissions\":"
+          },
+          {
+            "ref": "text",
+            "value": "{"
+          },
+          {
+            "ref": "text",
+            "value": "\"accessWithoutConfirmation\":"
+          },
+          {
+            "ref": "text",
+            "value": "false"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"addAccounts\":"
+          },
+          {
+            "ref": "text",
+            "value": "true"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"backupSafe\":"
+          },
+          {
+            "ref": "text",
+            "value": "false"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"createFolders\":"
+          },
+          {
+            "ref": "text",
+            "value": "false"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"deleteAccounts\":"
+          },
+          {
+            "ref": "text",
+            "value": "false"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"deleteFolders\":"
+          },
+          {
+            "ref": "text",
+            "value": "false"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"initiateCPMAccountManagementOperations\":"
+          },
+          {
+            "ref": "text",
+            "value": "true"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"listAccounts\":"
+          },
+          {
+            "ref": "text",
+            "value": "true"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"manageSafe\":"
+          },
+          {
+            "ref": "text",
+            "value": "false"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"manageSafeMembers\":"
+          },
+          {
+            "ref": "text",
+            "value": "false"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"moveAccountsAndFolders\":"
+          },
+          {
+            "ref": "text",
+            "value": "true"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"renameAccounts\":"
+          },
+          {
+            "ref": "text",
+            "value": "false"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"requestsAuthorizationLevel1\":"
+          },
+          {
+            "ref": "text",
+            "value": "false"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"requestsAuthorizationLevel2\":"
+          },
+          {
+            "ref": "text",
+            "value": "false"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"retrieveAccounts\":"
+          },
+          {
+            "ref": "text",
+            "value": "true"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"specifyNextAccountContent\":"
+          },
+          {
+            "ref": "text",
+            "value": "false"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"unlockAccounts\":"
+          },
+          {
+            "ref": "text",
+            "value": "true"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"updateAccountContent\":"
+          },
+          {
+            "ref": "text",
+            "value": "true"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"updateAccountProperties\":"
+          },
+          {
+            "ref": "text",
+            "value": "true"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"useAccounts\":"
+          },
+          {
+            "ref": "text",
+            "value": "true"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"viewAuditLog\":"
+          },
+          {
+            "ref": "text",
+            "value": "false"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"viewSafeMembers\":"
+          },
+          {
+            "ref": "text",
+            "value": "true"
+          },
+          {
+            "ref": "text",
+            "value": "}"
+          },
+          {
+            "ref": "text",
+            "value": ","
+          },
+          {
+            "ref": "text",
+            "value": "\"searchIn\":"
+          },
+          {
+            "ref": "text",
+            "value": "\""
+          },
+          {
+            "ref": "text",
+            "value": "Vault"
+          },
+          {
+            "ref": "text",
+            "value": "\""
+          },
+          {
+            "ref": "text",
+            "value": "}"
+          }
+        ],
+        "api-call-contenttype": "application/json",
+        "api-call-form": {},
+        "api-call-header": {
+          "Authorization": [
+            {
+              "_id": "MID06930950338211828",
+              "ref": "text",
+              "value": ""
+            },
+            {
+              "_id": "MID5305553072892863",
+              "description": " Logon- L D A P Authentication",
+              "name": "Body",
+              "ref": "api-definition-1117947119",
+              "value": "body"
+            },
+            {
+              "_id": "MID5689133812493248",
+              "ref": "text",
+              "value": ""
+            }
+          ],
+          "Content-Type": [
+            {
+              "_id": "MID27104396354917104",
+              "ref": "text",
+              "value": "application/json"
+            }
+          ]
+        },
+        "api-call-path": {
+          "Safe": [
+            {
+              "_id": "MID07355140149456973",
+              "ref": "text",
+              "value": ""
+            },
+            {
+              "_id": "MID9360702254005508",
+              "image": "",
+              "list": [
+                ""
+              ],
+              "logo": "/pages-gateway/assets/images/builder/loop-solid.svg",
+              "ref": "loop-definition-1112520119",
+              "title": " Safe",
+              "type": "(s)",
+              "value": "Safe(s)"
+            },
+            {
+              "_id": "MID7793492040911976",
+              "ref": "text",
+              "value": ""
+            }
+          ]
+        },
+        "api-call-query": {},
+        "api-call-type": "post",
+        "api-description": "Add Safe Member",
+        "api-map-config": {
+          "api-call-body": {
+            "description": "",
+            "location": "body",
+            "name": "body",
+            "webhookInput": null,
+            "webhookValidation": null,
+            "required": false,
+            "prompt": false,
+            "defaultParameter": true
+          },
+          "api-call-form": {},
+          "api-call-header": {
+            "Authorization": {
+              "description": "Session Authorization Token",
+              "location": "header",
+              "name": "Authorization",
+              "type": "string",
+              "webhookInput": null,
+              "webhookValidation": null,
+              "required": false,
+              "prompt": false,
+              "defaultParameter": true
+            },
+            "Content-Type": {
+              "description": "",
+              "location": "header",
+              "name": "Content-Type",
+              "type": "string",
+              "webhookInput": null,
+              "webhookValidation": null,
+              "required": false,
+              "prompt": false,
+              "defaultParameter": true
+            }
+          },
+          "api-call-path": {
+            "Safe": {
+              "description": "",
+              "location": "path",
+              "name": "Safe",
+              "type": "string",
+              "webhookInput": null,
+              "webhookValidation": null,
+              "required": false,
+              "prompt": false,
+              "defaultParameter": true
+            }
+          },
+          "api-call-query": {}
+        },
+        "api-map-desc": {
+          "api-call-body": "",
+          "api-call-form": {},
+          "api-call-header": {},
+          "api-call-path": {},
+          "api-call-query": {}
+        },
+        "apiid": "20583007-0b7e-4053-afdc-b2f1d9931ce3",
+        "apiname": " Add Safe Member",
+        "apiuniqueid": "",
+        "appname": "Identity Security Platform",
+        "authRequired": false,
+        "basePath": "/",
+        "company": "CyberArk",
+        "definition-id": "1115204918",
+        "endpoint": "/PasswordVault/api/Safes/{Safe}/Members",
+        "global_apiid": "121e3ef0-c366-4409-bc12-7ee821639bad",
+        "global_region": "",
+        "goto": "loop-stop-definition-1111827118",
+        "host": "services-uscentral.skytap.com:17975",
+        "id": "api-definition-1115204918",
+        "logo": "https://d2jvs8ec336vde.cloudfront.net/cyberark.png",
+        "nodeType": "API",
+        "scheme": [
+          "https"
+        ],
+        "version": "1.0"
+      },
+      "loop-stop-definition-1111827118": {
+        "goto": "loop-stop-definition-1119230149",
+        "id": "loop-stop-definition-1111827118",
+        "nodeType": "EndLoop"
+      },
+      "loop-stop-definition-1119230149": {
+        "goto": "api-condition-stop-definition-1116498553",
+        "id": "loop-stop-definition-1119230149",
+        "nodeType": "EndLoop"
+      },
+      "api-condition-stop-definition-1116498553": {
+        "condition-id": "1116498553",
+        "condition-type": "stop",
+        "customresponse": false,
+        "guid": "api-condition-stop-definition-1116498553",
+        "id": "api-condition-stop-definition-1116498553",
+        "killconnection": true,
+        "nodeType": "Stop",
+        "responseformat": {
+          "content-type": "application/json",
+          "response-body": [],
+          "response-config": {
+            "response-header": {},
+            "response-body": {}
+          },
+          "response-header": {}
+        }
+      }
+    },
+    "enabled": false
+  }
+}
